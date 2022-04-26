@@ -196,6 +196,9 @@ instance Foldable Planted where
 instance Traversable Planted where
 	sequenceA planted = (\x -> planted { phenotype = x }) <$> sequenceA (phenotype planted)
 
+instance Semigroup Observer where
+	(<>) = mappend
+
 instance Monoid Observer where
 	mempty = nullObserver
 	obs1 `mappend` obs2 = nullObserver {

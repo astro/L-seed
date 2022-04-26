@@ -18,7 +18,7 @@ type Line  = (Point, Point)
 
 
 newtype GeometryGenerator x a = GeometryGenerator (ReaderT (Point, Double) (Writer [(Line, x)]) a)
- deriving (Monad)
+ deriving (Functor, Applicative, Monad)
 
 transformed :: Point -> GeometryGenerator x Point
 transformed (x,y) = GeometryGenerator $ do

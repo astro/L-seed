@@ -58,7 +58,7 @@ Library
         Lseed.Mainloop		
         Lseed.StipeInfo		
   Build-Depends:
-        base    == 3.*,
+        base,
         random,
         containers,
         old-time,
@@ -69,8 +69,8 @@ Library
     Exposed-Modules:
         Lseed.Renderer.Cairo		
     Build-Depends:
-        cairo == 0.10.*,
-        gtk == 0.10.*
+        cairo,
+        gtk
 
   if flag(Database) 
     Build-Depends:

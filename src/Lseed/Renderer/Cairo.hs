@@ -1,6 +1,6 @@
 module Lseed.Renderer.Cairo where
 
-import Graphics.UI.Gtk hiding (fill)
+import Graphics.UI.Gtk hiding (fill, rectangle)
 import Graphics.Rendering.Cairo
 import Control.Monad
 import Control.Concurrent
@@ -276,7 +276,8 @@ renderInfo garden = do
 				siSubLight . pData . phenotype $ planted
 		-}
 		let text1 = plantOwnerName planted
-		let text2 = printf "Size: %.2f" $
+		let text2 :: String
+		    text2 = printf "Size: %.2f" $
 				siSubLength . pData . phenotype $ planted
 		preserve $ do
 			scale 1 (-1)
@@ -325,7 +326,8 @@ renderStats h garden = do
 	let owernerscore = foldr (\p -> M.insertWith (+) (plantOwnerName p) (plantLength (phenotype p))) M.empty garden
 
 	setFontSize (groundLevel/2)
-	let texts = map (\(n,s) -> printf "%s: %.1f" (take 20 n) s) $
+	let texts :: [String]
+	    texts = map (\(n,s) -> printf "%s: %.1f" (take 20 n) s) $
 			reverse $
 			sortBy (comparing snd) $
 		        (M.toList owernerscore)
